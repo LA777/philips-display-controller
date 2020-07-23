@@ -51,8 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arguments\HelpArgument.cs" />
+    <Compile Include="Arguments\BrightnessArgument.cs" />
+    <Compile Include="Arguments\InfoArgument.cs" />
+    <Compile Include="Arguments\VersionArgument.cs" />
+    <Compile Include="DisplayApi\DisplayApiService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupportedArguments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -69,6 +75,12 @@
     <Content Include="ILoggerLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArgumentParser\ArgumentParser.csproj">
+      <Project>{982B9F68-C027-4F34-9034-BF4A2AC13A14}</Project>
+      <Name>ArgumentParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
