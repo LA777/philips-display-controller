@@ -30,5 +30,25 @@ namespace pdc.DisplayApi
             InitDisplayInfo();
             DDCHelperAPI.setStandardDDCCIValue_CS(displayIndex, CSDDCHelperAPILib.VCPCodeCmd.CGMenuStdVCPCmd.eVCPOpCode_E.OP_10_Luminance, brightness);
         }
+
+        public static void SetAllDisplayBrightness(int brightness)
+        {
+            InitDisplayInfo();
+
+            var indexes = new List<int>();
+
+            for (int index = 0; index < displayNames.Count; index++)
+            {
+                if (displayNames[0].Contains("PHL"))
+                {
+                    indexes.Add(index);
+                }
+            }
+
+            foreach (var index in indexes)
+            {
+                DDCHelperAPI.setStandardDDCCIValue_CS(index, CSDDCHelperAPILib.VCPCodeCmd.CGMenuStdVCPCmd.eVCPOpCode_E.OP_10_Luminance, brightness);
+            }
+        }
     }
 }
