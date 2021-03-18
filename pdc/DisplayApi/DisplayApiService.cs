@@ -39,7 +39,7 @@ namespace pdc.DisplayApi
 
             for (int index = 0; index < displayNames.Count; index++)
             {
-                if (displayNames[0].Contains("PHL"))
+                if (displayNames[index].Contains("PHL"))
                 {
                     indexes.Add(index);
                 }
