@@ -5,7 +5,7 @@ namespace pdc.Arguments
 {
     public class VersionArgument : IArgument
     {
-        private const string Version = "0.0.3";
+        private const string Version = "0.0.4";
 
         public string Name => "version";
 
