@@ -29,11 +29,11 @@ namespace pdc.Arguments
                 return;
             }
 
-            var parameters = Parameter.Split(';');
+            var parameters = Parameter.Split(Parser.ParameterDelimiter);
 
             if (parameters.Length == 1)
             {
-                var values = parameters.First().Split(':');
+                var values = parameters.First().Split(Parser.KeyValueDelimiter);
                 if (values[0] == "all")
                 {
                     DisplayApiService.SetAllDisplayBrightness(Convert.ToInt32(values[1]));
@@ -46,7 +46,7 @@ namespace pdc.Arguments
 
             foreach (var parameter in parameters)
             {
-                var values = parameter.Split(':');
+                var values = parameter.Split(Parser.KeyValueDelimiter);
                 DisplayApiService.SetDisplayBrightness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
             }
         }

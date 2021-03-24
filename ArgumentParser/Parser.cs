@@ -8,8 +8,8 @@ namespace ArgumentParser
     {
         private const string ShortPrefix = "-";
         private const string Prefix = "--";
-        private const string KeyValueDelimiter = ":";
-        private const string ParameterDelimiter = ";";
+        public const char KeyValueDelimiter = ':';
+        public const char ParameterDelimiter = ';';
 
         public static void Parse(string[] arguments, IEnumerable<IArgument> supportedArguments)
         {

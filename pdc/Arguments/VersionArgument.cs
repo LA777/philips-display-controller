@@ -1,12 +1,11 @@
 ﻿using ArgumentParser;
 using System;
+using System.Reflection;
 
 namespace pdc.Arguments
 {
     public class VersionArgument : IArgument
     {
-        private const string Version = "0.0.4";
-
         public string Name => "version";
 
         public string ShortName => "v";
@@ -17,7 +16,8 @@ namespace pdc.Arguments
 
         public void Action()
         {
-            Console.WriteLine(Version);
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            Console.WriteLine(version.ToString());
         }
     }
 }
