@@ -26,12 +26,6 @@ namespace pdc.DisplayApi
         {
             DDCHelperAPI.DDCCIHelperIni_CS();
             DDCHelperAPI.EnumDisplayIDIni_CS(ref displayNames, ref currentDisplayName);
-
-            // TODO: Delete
-            for (int index = 0; index < displayNames.Count; index++)
-            {
-                Console.WriteLine($"Display index: {index} | Display name: {displayNames[index]}");
-            }
         }
 
         public static void SetAllDisplayBrightness(int brightness)
