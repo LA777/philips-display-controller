@@ -110,6 +110,7 @@
     <Content Include="ILoggerLib.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ArgumentParser\ArgumentParser.csproj">

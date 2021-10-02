@@ -30,24 +30,15 @@ namespace pdc.Arguments
             }
 
             var parameters = Parameter.Split(Parser.ParameterDelimiter);
+            var values = parameters.First().Split(Parser.KeyValueDelimiter);
 
-            if (parameters.Length == 1)
+            if (parameters.Length == 1 && values[0] == "all")
             {
-                var values = parameters.First().Split(Parser.KeyValueDelimiter);
-                if (values[0] == "all")
-                {
-                    DisplayApiService.SetAllDisplayBrightness(Convert.ToInt32(values[1]));
-                    return;
-                }
-
-                DisplayApiService.SetDisplayBrightness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
-                return;
+                DisplayApiService.SetAllDisplayBrightness(Convert.ToInt32(values[1]));
             }
-
-            foreach (var parameter in parameters)
+            else
             {
-                var values = parameter.Split(Parser.KeyValueDelimiter);
-                DisplayApiService.SetDisplayBrightness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]));
+                DisplayApiService.SetDisplayBrightnessIndividually(parameters);
             }
         }
     }
