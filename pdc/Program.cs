@@ -6,8 +6,8 @@ namespace pdc
     {
         static void Main(string[] args)
         {
-            var argumnetsProvider = new SupportedArguments();
-            Parser.Parse(args, argumnetsProvider.GetArgumentsList());
+            var argumentsProvider = new SupportedArguments();
+            Parser.Parse(args, argumentsProvider.GetArgumentsList());
         }
     }
 }
