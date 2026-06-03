@@ -8,7 +8,7 @@
     <StartupObject>pdc.Program</StartupObject>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-    <Platforms>AnyCPU</Platforms>
+    <ApplicationIcon>Icons\display-df.ico</ApplicationIcon>
 
     <!-- Assembly metadata (previously in Properties\AssemblyInfo.cs). -->
     <Version>0.0.5.0</Version>
@@ -19,6 +19,20 @@
     <Copyright>Copyright © 2020</Copyright>
   </PropertyGroup>
 
+  <!--
+    Single-file, self-contained publish: `dotnet publish -c Release` produces one
+    standalone pdc.exe that needs no .NET install. This app is inherently Windows x64
+    (DDC/CI via dxva2.dll), so the runtime identifier is fixed to win-x64.
+  -->
+  <PropertyGroup>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>embedded</DebugType>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="System.Management" Version="10.0.0" />
   </ItemGroup>
@@ -27,20 +41,18 @@
     <ProjectReference Include="..\ArgumentParser\ArgumentParser.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Icons\display-df.ico" />
-    <Content Include="Icons\display-df-10d.ico" />
-    <Content Include="Icons\display-df-50d.ico" />
-    <Content Include="Icons\display-df-90d.ico" />
-  </ItemGroup>
-
   <!--
-    Embeds the extra .ico resources into the built executable, preserving the original
-    post-build step. Targets the apphost (pdc.exe) so the icons land in the launcher.
-    Runs only when the helper tool is present so the build does not fail elsewhere.
+    The exe icon is set via <ApplicationIcon> above (single-file-safe). The brightness-state
+    icons are embedded as managed resources so they survive single-file bundling and can be
+    loaded at runtime (e.g. new Icon(assembly.GetManifestResourceStream(...))) if a tray UI is
+    added later. This replaces the old InsertIcons.exe post-build step, which wrote native PE
+    resources that are incompatible with single-file publish.
   -->
-  <Target Name="InsertIcons" AfterTargets="Build" Condition="Exists('$(SolutionDir)Utils\InsertIcons.exe')">
-    <Exec Command="&quot;$(SolutionDir)Utils\InsertIcons.exe&quot; &quot;$(TargetDir)$(AssemblyName).exe&quot; &quot;$(ProjectDir)Icons&quot;" />
-  </Target>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\display-df.ico" />
+    <EmbeddedResource Include="Icons\display-df-10d.ico" />
+    <EmbeddedResource Include="Icons\display-df-50d.ico" />
+    <EmbeddedResource Include="Icons\display-df-90d.ico" />
+  </ItemGroup>
 
 </Project>
