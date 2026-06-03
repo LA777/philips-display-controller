@@ -11,7 +11,7 @@
     <ApplicationIcon>Icons\display-df.ico</ApplicationIcon>
 
     <!-- Assembly metadata (previously in Properties\AssemblyInfo.cs). -->
-    <Version>0.0.5.0</Version>
+    <Version>0.1.0.0</Version>
     <Product>pdc</Product>
     <AssemblyTitle>pdc</AssemblyTitle>
     <Description>Philips display controller</Description>
